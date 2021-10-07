@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "44816626154",
+    "project_id": "sales-app-abfb5",
+    "storage_bucket": "sales-app-abfb5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:44816626154:android:b9e30caba8eb94ad940293",
+        "android_client_info": {
+          "package_name": "com.example.sales"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "44816626154-qmk2dmkmikp1rjissru5opnuh9g88lpu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sales",
+            "certificate_hash": "1afe8e8afa0054394c8aad64cef3d9f33e3590d0"
+          }
+        },
+        {
+          "client_id": "44816626154-3v93l0st6t894iu0b4ckpeehkklufvfe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkfI5wz3ba5a8TKl74ZqncdYaH5wAGV1c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "44816626154-3v93l0st6t894iu0b4ckpeehkklufvfe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

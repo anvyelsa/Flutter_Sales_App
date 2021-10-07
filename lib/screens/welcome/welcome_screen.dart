@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sales/screens/login/login.dart';
 import 'package:sales/screens/sign_up/signup.dart';
 import '../../constants.dart';
 
@@ -45,7 +46,12 @@ class WelcomeScreen extends StatelessWidget {
             child: FlatButton(
               padding: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
               color: kPrimaryColor,
-              onPressed: (){}, 
+              onPressed: (){
+                Navigator.push(
+                  context, 
+                  MaterialPageRoute(builder: (context)=>login()),
+                );
+              }, 
               child:Text(
                 "LOGIN",
                 style: TextStyle(color: Colors.white),

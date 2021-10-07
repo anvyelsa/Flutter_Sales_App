@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:sales/constants.dart';
+import 'package:sales/screens/login/login.dart';
+import 'package:sales/screens/sign_up/signup.dart';
 import 'package:sales/screens/welcome/welcome_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -20,6 +24,10 @@ class MyApp extends StatelessWidget {
         
       ),
       home: WelcomeScreen(),
+      routes: <String,WidgetBuilder>{
+        "Login" : (BuildContext context)=>login(),
+        "SignUp" : (BuildContext context)=>SignUp(),
+      }
     );
   }
 }
