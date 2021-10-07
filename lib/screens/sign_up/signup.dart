@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:sales/constants.dart';
 import 'package:sales/screens/Home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -16,10 +15,15 @@ class _SignUpState extends State<SignUp> {
   final GlobalKey<FormState> _formKey =GlobalKey<FormState>();
   var  _email, _password;
 
+  
   CheckAuthentication() async {
-    _auth.authStateChanges().listen((user) {
+    _auth.authStateChanges().listen((user) async {
       if(user != null){
-        Navigator.pushReplacementNamed(context, "/");
+        //Navigator.pushReplacementNamed(context, "/");
+        Navigator.push(
+                  context, 
+                  MaterialPageRoute(builder: (context)=>Home()),
+                );
       }
     });
   }
@@ -48,8 +52,7 @@ class _SignUpState extends State<SignUp> {
       {
         
         showError(e.message);
-        print(e.message);
-        //return e.message;
+        print(e);
       }
     }
   }

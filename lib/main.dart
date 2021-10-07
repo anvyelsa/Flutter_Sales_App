@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sales/constants.dart';
+import 'package:sales/screens/Home.dart';
 import 'package:sales/screens/login/login.dart';
 import 'package:sales/screens/sign_up/signup.dart';
 import 'package:sales/screens/welcome/welcome_screen.dart';
@@ -23,10 +24,13 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.white,
         
       ),
+      debugShowMaterialGrid: false,
+    
       home: WelcomeScreen(),
       routes: <String,WidgetBuilder>{
         "Login" : (BuildContext context)=>login(),
         "SignUp" : (BuildContext context)=>SignUp(),
+        "welcome" : (BuildContext context)=>WelcomeScreen(),
       }
     );
   }
