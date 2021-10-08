@@ -16,22 +16,8 @@ class _loginState extends State<login> {
   final GlobalKey<FormState> _formKey =GlobalKey<FormState>();
   var  _email, _password;
 
-  CheckAuthentication() async {
-    _auth.authStateChanges().listen((user)  {
-      if(user != null){
-        Navigator.push(
-          context, 
-          MaterialPageRoute(builder: (context)=> Home())
-          );
-      }
-    });
-  }
-  @override
-  void initState()
-  {
-    super.initState();
-    this.CheckAuthentication();
-  } 
+  
+  
 
   login()async {
     if(_formKey.currentState!.validate())
@@ -42,6 +28,7 @@ class _loginState extends State<login> {
          await _auth.signInWithEmailAndPassword(
            email: _email, password: _password,
           );
+          Navigator.pushReplacementNamed(context, "Home");
       } on FirebaseAuthException
       catch (e)
       {
@@ -175,8 +162,16 @@ navigateToSignUp() async {
                         ),
                       ),
                     ),
+                    SizedBox(height: size.height * 0.08),
                     GestureDetector(
-                      child: Text('Create an Account ?'),
+                      child: Text('Create an Account ?', 
+                        style: TextStyle(
+                          color: kPrimaryColor,
+                          decoration: TextDecoration.none,
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                         ),
+                      ),
                       onTap: navigateToSignUp,
                     )
                   ],

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sales/constants.dart';
-import 'package:sales/screens/Home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class SignUp extends StatefulWidget {
@@ -16,23 +15,23 @@ class _SignUpState extends State<SignUp> {
   var  _email, _password;
 
   
-  CheckAuthentication() async {
-    _auth.authStateChanges().listen((user) async {
-      if(user != null){
+//  CheckAuthentication() async {
+//    _auth.authStateChanges().listen((user) async {
+//      if(user != null){
         //Navigator.pushReplacementNamed(context, "/");
-        Navigator.push(
-                  context, 
-                  MaterialPageRoute(builder: (context)=>Home()),
-                );
-      }
-    });
-  }
+//        Navigator.push(
+//                  context, 
+//                  MaterialPageRoute(builder: (context)=>Home()),
+//                );
+//      }
+ //   });
+  //}
   @override
-  void initState()
-  {
-    super.initState();
-    this.CheckAuthentication();
-  } 
+ // void initState()
+ // {
+   // super.initState();
+    //this.CheckAuthentication();
+  //} 
 
   signUp()async {
     if(_formKey.currentState!.validate())
@@ -46,6 +45,8 @@ class _SignUpState extends State<SignUp> {
         if (user != null)
         {
           await _auth.currentUser!.updateDisplayName(_email);
+          Navigator.pushReplacementNamed(context, "Home");
+
         }
       } on FirebaseAuthException
       catch (e)

@@ -31,6 +31,7 @@ class MyApp extends StatelessWidget {
         "Login" : (BuildContext context)=>login(),
         "SignUp" : (BuildContext context)=>SignUp(),
         "welcome" : (BuildContext context)=>WelcomeScreen(),
+        "Home" : (BuildContext context)=>Home(),
       }
     );
   }
