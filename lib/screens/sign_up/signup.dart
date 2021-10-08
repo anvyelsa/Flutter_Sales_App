@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sales/Firebase.dart';
 import 'package:sales/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -45,6 +46,7 @@ class _SignUpState extends State<SignUp> {
         if (user != null)
         {
           await _auth.currentUser!.updateDisplayName(_email);
+          usersetup(_email);
           Navigator.pushReplacementNamed(context, "Home");
 
         }
