@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:sales/constants.dart';
-import 'package:sales/screens/Home.dart';
+import 'package:sales/screens/Admin/AdminHome.dart';
+import 'package:sales/screens/User/Home.dart';
 import 'package:sales/screens/login/login.dart';
 import 'package:sales/screens/sign_up/signup.dart';
 import 'package:sales/screens/welcome/welcome_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:sales/screens/Admin/Admin.dart';
 
 
 void main() async {
@@ -33,6 +35,8 @@ class MyApp extends StatelessWidget {
         "SignUp" : (BuildContext context)=>SignUp(),
         "welcome" : (BuildContext context)=>WelcomeScreen(),
         "Home" : (BuildContext context)=>Home(),
+        "AdminHome": (BuildContext context)=>AdminHome(),
+         
       }
     );
   }

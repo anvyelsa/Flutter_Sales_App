@@ -1,6 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:sales/constants.dart';
-import 'package:sales/screens/Home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:sales/screens/sign_up/signup.dart';
 
@@ -15,8 +15,18 @@ class _loginState extends State<login> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GlobalKey<FormState> _formKey =GlobalKey<FormState>();
   var  _email, _password;
-
   
+
+  void _checkRole() async {
+    var user = FirebaseAuth.instance.currentUser;
+    var rol = FirebaseFirestore.instance.collection('users').doc(user!.uid).get().then((value) => value.data()!["role"]);
+    
+    if(rol == 'user'){
+     Navigator.pushReplacementNamed(context, "Home");
+    } else if(rol == 'admin'){
+      Navigator.pushReplacementNamed(context, "AdminHome");
+    }
+  }
   
 
   login()async {
@@ -28,11 +38,11 @@ class _loginState extends State<login> {
          await _auth.signInWithEmailAndPassword(
            email: _email, password: _password,
           );
-          Navigator.pushReplacementNamed(context, "Home");
+          Navigator.pushReplacementNamed(context, "AdminHome");
+         // _checkRole();
       } on FirebaseAuthException
       catch (e)
-      {
-        
+      {  
         showError(e.message);
         print(e);
       }
@@ -137,9 +147,7 @@ navigateToSignUp() async {
                         ),
                         cursorColor: kPrimaryColor,
 
-                        validator: (input){
-                          
-
+                        validator: (input){          
                           if (input?.isEmpty?? true) return 'Enter Password';
                         },
                         obscureText: true,
@@ -162,7 +170,7 @@ navigateToSignUp() async {
                         ),
                       ),
                     ),
-                    SizedBox(height: size.height * 0.08),
+                    SizedBox(height: size.height * 0.05),
                     GestureDetector(
                       child: Text('Create an Account ?', 
                         style: TextStyle(

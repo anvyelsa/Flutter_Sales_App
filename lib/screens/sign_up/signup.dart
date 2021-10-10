@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sales/Firebase.dart';
 import 'package:sales/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({ Key? key }) : super(key: key);
@@ -14,7 +14,7 @@ class _SignUpState extends State<SignUp> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GlobalKey<FormState> _formKey =GlobalKey<FormState>();
   var  _email, _password;
-
+  
   
 //  CheckAuthentication() async {
 //    _auth.authStateChanges().listen((user) async {
@@ -34,6 +34,20 @@ class _SignUpState extends State<SignUp> {
     //this.CheckAuthentication();
   //} 
 
+
+
+  Future<void> usersetup(String Name)async{
+CollectionReference users = FirebaseFirestore.instance.collection('users');
+
+FirebaseAuth auth= FirebaseAuth.instance;
+ var uid = auth.currentUser!.uid.toString();
+users.add({'Email': Name,'uid': uid, 'password':_password, 'role': 'user',});
+ 
+  return;
+}
+
+
+
   signUp()async {
     if(_formKey.currentState!.validate())
     {
@@ -45,10 +59,9 @@ class _SignUpState extends State<SignUp> {
           );
         if (user != null)
         {
-          await _auth.currentUser!.updateDisplayName(_email);
+          await _auth.currentUser!.updateProfile(displayName: _email);
           usersetup(_email);
           Navigator.pushReplacementNamed(context, "Home");
-
         }
       } on FirebaseAuthException
       catch (e)
@@ -80,6 +93,7 @@ class _SignUpState extends State<SignUp> {
       }
     );
   }
+
 
 
   @override
